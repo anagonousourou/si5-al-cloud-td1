@@ -1,0 +1,24 @@
+version: "3.3"
+# https://docs.docker.com/compose/networking/
+services:
+    web:
+        image: alcloudwebtd1
+        container_name: alcloudwebtd1host
+        environment:
+            - DB_URI=postgresql://yankee_esquina:mygreat_password9@alclouddbhost:5432/cloudtd1db
+        ports:
+            - "80:5000"
+        depends_on:
+            - db
+
+    db:
+        image: postgres:12
+        container_name: alclouddbhost
+        ports:
+            - "5002:5432"
+        environment: 
+            - POSTGRES_PASSWORD=mygreat_password9
+            - POSTGRES_USER=yankee_esquina
+            - POSTGRES_DB=cloudtd1db
+
+    
